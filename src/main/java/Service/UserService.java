@@ -9,6 +9,7 @@ import Model.User;
 import Dao.UserDao;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 
@@ -22,11 +23,10 @@ public class UserService {
     }
 
     @GET
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUsers()
     {
-        ArrayList<User> users = null;
+        List<User> users = null;
         try
         {
             users = dao.getAll();
@@ -35,14 +35,15 @@ public class UserService {
         {
             e.printStackTrace();
         }
-        return null;
+        System.out.println("no users");
+        return users;
     }
 
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@PathParam("id") int id) throws Exception {
+    public User getUser(@PathParam("id") int id){
         try {
             return dao.get(id);
         } catch (Exception e) {

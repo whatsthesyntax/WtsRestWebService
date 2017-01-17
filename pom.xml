@@ -11,6 +11,14 @@
 
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.6.4</version>
+        </dependency>
+
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -52,7 +60,9 @@
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
         </dependency>
- </dependencies>
+
+
+    </dependencies>
 
     <build>
         <finalName>WTSRestWebService</finalName>

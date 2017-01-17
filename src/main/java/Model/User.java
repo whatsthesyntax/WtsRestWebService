@@ -1,35 +1,32 @@
 package Model;
 
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.io.Serializable;
+
 /**
- * Created by rim on 15/01/17.
+ * Created by rim on 17/01/17.
  */
-public class User {
+@Entity
+@Table(name = "users", schema = "mydb")
+public class User implements Serializable {
 
-    int id;
-    String username;
-    String email;
-    String password;
-    //Date creationDate;
+    private int userId;
+    private String username;
+    private String email;
+    private String password;
 
 
-    public User(int id, String username, String email, String password) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "userId")
+    public int getUserId() {
+        return userId;
     }
 
-    public User() {
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    @Basic
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -38,6 +35,8 @@ public class User {
         this.username = username;
     }
 
+    @Basic
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -46,6 +45,8 @@ public class User {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -53,4 +54,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+
+    public User(){
+
+    }
+
 }
