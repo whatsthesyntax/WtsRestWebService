@@ -8,14 +8,13 @@ import java.util.List;
 import Model.User;
 import Dao.UserDao;
 
-import javax.annotation.security.PermitAll;
+import javax.json.Json;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 
 @Path("/users")
-@PermitAll
 public class UserService {
 
     UserDao dao;
@@ -25,6 +24,7 @@ public class UserService {
     }
 
     @GET
+    @Path("/allusers")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUsers()
     {
@@ -54,7 +54,9 @@ public class UserService {
         return null;
     }
 
+    /*Changement de parametre de la fonction les paramètre recu du post*/
     @POST
+    @Path("/adduser")
     @Produces(MediaType.APPLICATION_JSON)
     public void addUser(User user)
     {
@@ -88,6 +90,10 @@ public class UserService {
             e.printStackTrace();
         }
 
+    }
+    /* creation d'un utilisateur à partir de JSON */
+    private User createUser(){
+        return null;
     }
 
 }
