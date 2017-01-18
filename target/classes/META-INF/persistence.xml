@@ -2,30 +2,17 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
     <persistence-unit name="WTS">
-
-        <!--
-
-        <properties>
-            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
-            <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mydb"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/mydb"/>
-            <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
-            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
-            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-        </properties>
-
-        -->
-
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>Model.User</class>
+        <class>Model.Role</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="platine"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
         </properties>
     </persistence-unit>
 </persistence>

@@ -8,12 +8,14 @@ import java.util.List;
 import Model.User;
 import Dao.UserDao;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 
 @Path("/users")
+@PermitAll
 public class UserService {
 
     UserDao dao;
