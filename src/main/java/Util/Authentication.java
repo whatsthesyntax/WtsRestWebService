@@ -7,6 +7,7 @@ import Dao.UserDao;
 import Model.User;
 import com.sun.jersey.core.util.Base64;
 
+
 import java.io.IOException;
 import java.util.StringTokenizer;
 
@@ -24,8 +25,7 @@ public class Authentication {
         final String encodedUserPassword = authCredentials.replaceFirst("[B|b]asic ","");
         String usernameAndPassword = null;
         try {
-            byte[] decodedBytes = Base64.decode(
-                    encodedUserPassword);
+            byte[] decodedBytes = Base64.decode(encodedUserPassword.getBytes());
             usernameAndPassword = new String(decodedBytes, "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();

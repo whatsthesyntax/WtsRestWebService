@@ -1,18 +1,14 @@
 package Util;
 
-import com.sun.jersey.core.util.Priority;
 
-import javax.ws.rs.Priorities;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.PreMatching;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
 @Provider
 @PreMatching
-@Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequestFilter  {
 
     public void filter(ContainerRequestContext request) {

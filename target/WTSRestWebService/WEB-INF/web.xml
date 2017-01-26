@@ -7,7 +7,9 @@
     <display-name>WTS Web Service</display-name>
     <servlet>
         <servlet-name>jersey-serlvet</servlet-name>
-        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+
         <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
             <param-value>Service</param-value>
@@ -18,9 +20,25 @@
         </init-param>
 
         <init-param>
+            <!-- The package now NEED to reference all classes used on startup -->
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>
+                Util;
+                Service;
+                org.glassfish.jersey.filter;
+            </param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>Util.AppConfig</param-value>
+        </init-param>
+
+        <init-param>
             <param-name>javax.ws.rs.container.ContainerRequestFilter</param-name>
             <param-value>
-                Util.Authentication
+                Util.Authentication;
+                org.glassfish.jersey.filter.LoggingFilter;
             </param-value>
         </init-param>
         <init-param>
