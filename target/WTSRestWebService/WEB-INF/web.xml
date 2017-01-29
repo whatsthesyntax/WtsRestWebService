@@ -18,7 +18,12 @@
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
             <param-value>true</param-value>
         </init-param>
-
+        <init-param>
+            <param-name>jersey.config.server.provider.classnames</param-name>
+            <param-value>
+                org.glassfish.jersey.filter.LoggingFilter;
+            </param-value>
+        </init-param>
         <init-param>
             <!-- The package now NEED to reference all classes used on startup -->
             <param-name>jersey.config.server.provider.packages</param-name>
@@ -32,6 +37,11 @@
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>Util.AppConfig</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>org.glassfish.jersey.media.json.JSONMarshaller.formatted</param-name>
+            <param-value>true</param-value>
         </init-param>
 
         <init-param>

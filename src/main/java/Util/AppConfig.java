@@ -1,5 +1,6 @@
 package Util;
 
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
@@ -9,7 +10,9 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 public class AppConfig extends ResourceConfig {
 
     public AppConfig() {
+
         register(RolesAllowedDynamicFeature.class);
+        register(JacksonFeature.class);
     }
 
 }

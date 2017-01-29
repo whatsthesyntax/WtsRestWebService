@@ -28,7 +28,8 @@ public class UserService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getAllUsers()
+    @RolesAllowed("Administrateur")
+    public List<User> getAllUsers(@Context SecurityContext sc)
     {
         List<User> users = null;
         try

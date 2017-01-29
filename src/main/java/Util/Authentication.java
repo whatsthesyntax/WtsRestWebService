@@ -5,7 +5,7 @@ package Util;
  */
 import Dao.UserDao;
 import Model.User;
-import com.sun.jersey.core.util.Base64;
+import org.glassfish.jersey.internal.util.Base64;
 
 
 import java.io.IOException;
