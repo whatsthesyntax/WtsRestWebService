@@ -42,7 +42,6 @@ public class Role {
     @JoinTable(name = "userRoles",
             joinColumns = { @JoinColumn(name = "roleId") },
             inverseJoinColumns = { @JoinColumn(name = "userId") })
-    //@JsonIgnore
     public List<User> getUsers()
     {
         return users;

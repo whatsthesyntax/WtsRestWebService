@@ -5,6 +5,9 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>Model.User</class>
         <class>Model.Role</class>
+        <class>Model.Code</class>
+        <class>Model.Langage</class>
+        <class>Model.Tag</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

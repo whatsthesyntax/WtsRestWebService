@@ -41,41 +41,4 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 
     }
 
-/*
-    public static final String AUTHENTICATION_HEADER = "Authorization";
-
-    public void doFilter(ServletRequest request, ServletResponse response,
-                         FilterChain filter) throws IOException, ServletException {
-        if (request instanceof HttpServletRequest) {
-            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-            String authCredentials = httpServletRequest
-                    .getHeader(AUTHENTICATION_HEADER);
-
-            // better injected
-            Authentication authentication = new Authentication();
-
-            boolean authenticationStatus = authentication
-                    .authenticate(authCredentials);
-
-            if (authenticationStatus) {
-                filter.doFilter(request, response);
-            } else {
-                if (response instanceof HttpServletResponse) {
-                    HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-                    httpServletResponse
-                            .setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                }
-            }
-        }
-    }
-
-
-    public void destroy() {
-    }
-
-
-    public void init(FilterConfig arg0) throws ServletException {
-    }
-*/
-
 }
