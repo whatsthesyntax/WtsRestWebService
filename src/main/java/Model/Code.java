@@ -62,6 +62,7 @@ public class Code implements Serializable{
     }
 
     @ManyToOne
+    @JoinColumn(name="langageId",referencedColumnName="langageId")
     public Langage getLangage(){
         return langage;
     }

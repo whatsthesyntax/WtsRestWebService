@@ -41,12 +41,19 @@ public class LangageDao {
                     .getSingleResult();
             return langage;
         }catch(Exception e){
-            throw e;
+            return null;
         }
     }
 
-    public boolean exists() throws Exception{
-        return false;
+    public void add(Langage l)throws Exception{
+        try{
+            em.getTransaction().begin();
+            em.persist(l);
+            em.getTransaction().commit();
+        }catch(Exception e)
+        {
+            throw e;
+        }
     }
 
 }

@@ -29,7 +29,6 @@ public class Langage {
     public String getLangage() {
         return langage;
     }
-
     public void setLangage(String langage) {
         this.langage = langage;
     }

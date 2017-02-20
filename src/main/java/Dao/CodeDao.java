@@ -50,23 +50,30 @@ public class CodeDao {
         }
     }
 
-    public Code getByTags(List<String> tags) throws Exception {
+    public List<Code> getByTags(List<String> tags) throws Exception {
         try {
-            Code code;
-            code = (Code) em.createQuery("SELECT c FROM Code c WHERE c.tags.tag IN ?1")
-                    .setParameter(1, tags)
-                    .getSingleResult();
-            return code;
+            List<Code> codes;
+            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join c.tags t where t.tag in ?1")
+                    .setParameter(1, tags).getResultList();
+            return codes;
         } catch (Exception e) {
             throw e;
         }
     }
 
+    public List<Code> getByLanguage(String l) throws Exception {
+        try {
+            List<Code> codes;
+            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join Langage l where l.langage =?1")
+                    .setParameter(1, l).getResultList();
+            return codes;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
     public void add(Code c, Langage l, List<Tag> tags)throws Exception{
         try{
-            //check if language exists?setlangage:create and set langage
-            //check tags
             c.setLangage(l);
             c.setTags(tags);
             em.getTransaction().begin();
@@ -77,8 +84,6 @@ public class CodeDao {
             throw e;
         }
     }
-
-    /*
 
     public void update(Code c)throws Exception{
         try{
@@ -105,8 +110,6 @@ public class CodeDao {
         {
             throw e;
         }
-
     }
-    */
 
 }

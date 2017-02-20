@@ -39,10 +39,10 @@ public class Tag implements Serializable{
         this.tag = tag;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "codeTags",
-            joinColumns = { @JoinColumn(name = "tagId") },
-            inverseJoinColumns = { @JoinColumn(name = "codeId") })
+            joinColumns = { @JoinColumn(name = "tagId", referencedColumnName = "tagId") },
+            inverseJoinColumns = { @JoinColumn(name = "codeId", referencedColumnName = "codeId") })
     public List<Code> getCodes()
     {
         return codes;

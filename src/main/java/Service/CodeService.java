@@ -1,6 +1,8 @@
 package Service;
 
 import Dao.CodeDao;
+import Dao.LangageDao;
+import Dao.TagDao;
 import Model.Code;
 import Model.Langage;
 import Model.Tag;
@@ -12,6 +14,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import Model.User;
@@ -29,9 +32,13 @@ import org.json.*;
 public class CodeService {
 
     CodeDao dao;
+    LangageDao ldao;
+    TagDao tdao;
 
     public CodeService(){
         this.dao = new CodeDao();
+        this.ldao = new LangageDao();
+        this.tdao = new TagDao();
     }
 
     @GET
@@ -65,6 +72,38 @@ public class CodeService {
     }
 
     @POST
+    @Path("/tags")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Code> getCodeByTags(String str){
+        try {
+            List<String> tags = new ArrayList<>();
+            JSONObject jsonObject = new JSONObject(str);
+            JSONArray jarray = jsonObject.getJSONArray("taglist");
+            for(int i = 0 ; i < jarray.length(); i++){
+                tags.add(jarray.getJSONObject(i).getString("tag"));
+            }
+            return dao.getByTags(tags);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @GET
+    @Path("/language/{lang}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Code> getCodeByLanguage(@PathParam("lang") String lang){
+        try {
+            return dao.getByLanguage(lang);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void addCode(String str)
@@ -73,13 +112,56 @@ public class CodeService {
             Gson gson = new GsonBuilder().create();
             JSONObject jsonObject = new JSONObject(str);
             Code c = gson.fromJson(jsonObject.getJSONObject("code").toString(), Code.class);
-            Langage l = gson.fromJson(jsonObject.getJSONObject("langage").toString(), Langage.class);
-            Type tagsType = new TypeToken<List<Tag>>(){}.getType();
-            List<Tag> tags = gson.fromJson(jsonObject.getJSONArray("tags").toString(), tagsType);
+
+            //check existing langages
+            String langage = gson.fromJson(jsonObject.getJSONObject("langage").getString("langage"), String.class);
+            Langage l = ldao.getByName(langage);
+            if(l == null) {
+                //create new langage
+                l = gson.fromJson(jsonObject.getJSONObject("langage").toString(), Langage.class);
+                ldao.add(l);
+            }
+            //check existings tags
+            List<Tag> tags = new ArrayList<>();
+            JSONArray jarray = jsonObject.getJSONArray("tags");
+            for(int i = 0 ; i < jarray.length(); i++){
+                Tag t = tdao.getByName(jarray.getJSONObject(i).getString("tag"));
+                if(t == null){
+                    t = new Tag();
+                    t.setTag(jarray.getJSONObject(i).getString("tag"));
+                    tdao.add(t);
+                }
+                tags.add(t);
+            }
             dao.add(c,l,tags);
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public void updateCode(Code code)
+    {
+        try {
+            dao.update(code);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void deleteCode(@PathParam("id") int id)
+    {
+        try {
+            dao.delete(id);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
