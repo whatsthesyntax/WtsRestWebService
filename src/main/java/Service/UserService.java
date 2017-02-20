@@ -28,8 +28,7 @@ public class UserService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("Administrateur")
-    public List<User> getAllUsers(@Context SecurityContext sc)
+    public List<User> getAllUsers()
     {
         List<User> users = null;
         try
@@ -40,7 +39,6 @@ public class UserService {
         {
             e.printStackTrace();
         }
-        System.out.println("no users");
         return users;
     }
 

@@ -10,7 +10,7 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 public class AppConfig extends ResourceConfig {
 
     public AppConfig() {
-
+        register(ResponseFilter.class);
         register(RolesAllowedDynamicFeature.class);
         register(JacksonFeature.class);
     }

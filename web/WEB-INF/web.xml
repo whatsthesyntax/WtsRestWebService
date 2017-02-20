@@ -48,12 +48,14 @@
             <param-name>javax.ws.rs.container.ContainerRequestFilter</param-name>
             <param-value>
                 Util.Authentication;
+                Util.RequestFilter;
                 org.glassfish.jersey.filter.LoggingFilter;
             </param-value>
         </init-param>
         <init-param>
             <param-name>javax.ws.rs.container.ContainerResponseFilters</param-name>
             <param-value>
+                Util.ResponseFilter;
                 org.glassfish.jersey.filter.LoggingFilter;
             </param-value>
         </init-param>
@@ -61,17 +63,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>jersey-serlvet</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
-    <!--
-        <filter>
-            <filter-name>AuthenticationFilter</filter-name>
-            <filter-class>Util.AuthenticationFilter</filter-class>
-        </filter>
-        <filter-mapping>
-            <filter-name>AuthenticationFilter</filter-name>
-            <url-pattern>/rest/logged/*</url-pattern>
-        </filter-mapping>
-    -->
-
 </web-app>
