@@ -1,5 +1,9 @@
 package Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,6 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "langages", schema = "mydb")
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="langageId")
 public class Langage {
     private int langageId;
     private String langage;
@@ -34,6 +39,7 @@ public class Langage {
     }
 
    @OneToMany(mappedBy = "langage")
+   @JsonIgnore
     public List<Code> getCodes(){
         return codes;
    }

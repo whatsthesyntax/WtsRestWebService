@@ -69,7 +69,7 @@
       <ColNames>codeID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="25" parent="8" name="codes_langages_langageId_fk">
+    <index id="25" parent="8" name="codes_langages_fk">
       <ColNames>langageId</ColNames>
     </index>
     <key id="26" parent="8" name="PRIMARY">
@@ -80,7 +80,7 @@
       <ColNames>codeID</ColNames>
       <UnderlyingIndexName>codes_codeID_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="28" parent="8" name="codes_langages_langageId_fk">
+    <foreign-key id="28" parent="8" name="codes_langages_fk">
       <ColNames>langageId</ColNames>
       <RefSchemaName>mydb</RefSchemaName>
       <RefTableName>langages</RefTableName>

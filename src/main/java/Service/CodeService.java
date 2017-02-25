@@ -28,6 +28,7 @@ import org.json.*;
  */
 
 @Path("/codes")
+// change permissions afterwards
 @PermitAll
 public class CodeService {
 

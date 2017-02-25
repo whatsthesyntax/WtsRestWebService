@@ -17,6 +17,7 @@ import javax.ws.rs.core.SecurityContext;
 
 
 @Path("/users")
+// change permissions later
 @PermitAll
 public class UserService {
 

@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
 
-// testing permissions
+// class for testing permissions
 
 @Path("logged")
 public class loggedService {

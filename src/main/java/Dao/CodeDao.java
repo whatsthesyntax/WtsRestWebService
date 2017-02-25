@@ -53,7 +53,8 @@ public class CodeDao {
     public List<Code> getByTags(List<String> tags) throws Exception {
         try {
             List<Code> codes;
-            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join c.tags t where t.tag in ?1")
+            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join c.tags t where t.tag in ?1 " +
+                    " order by c.codeId")
                     .setParameter(1, tags).getResultList();
             return codes;
         } catch (Exception e) {
@@ -64,7 +65,8 @@ public class CodeDao {
     public List<Code> getByLanguage(String l) throws Exception {
         try {
             List<Code> codes;
-            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join Langage l where l.langage =?1")
+            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join Langage l where l.langage =?1 " +
+                    "order by c.codeId")
                     .setParameter(1, l).getResultList();
             return codes;
         } catch (Exception e) {
@@ -105,6 +107,7 @@ public class CodeDao {
             em.getTransaction().begin();
             em.remove(code);
             em.getTransaction().commit();
+            System.out.println("---------------- CODE DELETED -----------------");
         }
         catch(Exception e)
         {

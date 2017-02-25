@@ -65,7 +65,7 @@ public class UserDao {
     public User findUser(String username)throws Exception{
         try{
             User user;
-            user = (User) em.createQuery("SELECT u FROM User u WHERE u.username = ?1")
+            user = (User) em.createQuery("SELECT u FROM User u WHERE u.name = ?1")
                     .setParameter(1, username)
                     .getSingleResult();
             return user;

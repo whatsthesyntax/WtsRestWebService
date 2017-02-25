@@ -1,6 +1,7 @@
 package Model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -51,7 +52,10 @@ public class Code implements Serializable{
         this.description = description;
     }
 
-    @ManyToMany(mappedBy = "codes")
+    @ManyToMany
+    @JoinTable(name = "codeTags",
+            joinColumns = { @JoinColumn(name = "codeId", referencedColumnName = "codeId") },
+            inverseJoinColumns = { @JoinColumn(name = "tagId", referencedColumnName = "tagId") })
     public List<Tag> getTags()
     {
         return tags;

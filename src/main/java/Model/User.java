@@ -1,6 +1,7 @@
 package Model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -36,11 +37,12 @@ public class User implements Serializable, Principal {
 
     @Basic
     @Column(name = "username")
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return this.username;
     }
-    public void setUsername(String username) {
-        this.username = username;
+
+    public void setName(String name) {
+        this.username = name;
     }
 
     @Basic
@@ -62,7 +64,7 @@ public class User implements Serializable, Principal {
     }
 
     @ManyToMany(mappedBy = "users")
-    //@JsonIgnore
+    @JsonIgnore
     public List<Role> getRoles()
     {
         return roles;
@@ -73,9 +75,7 @@ public class User implements Serializable, Principal {
     }
 
 
-    public String getName() {
-        return this.username;
-    }
+
 
     public boolean hasRole(String role){
         for (Role r: this.roles) {
