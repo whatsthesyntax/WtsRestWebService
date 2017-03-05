@@ -31,6 +31,7 @@ de la représentation en Base64 du nom de l'utilisateur et du mot de passe sépa
 Par exemple: `Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==` envoi les identifiants `Aladdin:open sesame`
 
 Si l'authentification passe, un objet json est retourné, contenant les informations de l'utilisateur.
+Sinon, le serveur retourne une erreur 401 Unauthorized.
 ```json
 {
   "id":"",
@@ -40,6 +41,58 @@ Si l'authentification passe, un objet json est retourné, contenant les informat
   "password":""
 }
 ```
+### Récupérer tous les utilisateurs
+
+url : http://vps381611.ovh.net:8080/WTSAPI/users/
+
+méthode: GET
+
+Retourne en format json la liste de tous les utilisateurs qui existent dans la base de données.
 
 
 ### Récupérer un utilisateur
+
+url : http://vps381611.ovh.net:8080/WTSAPI/users/{id}
+
+méthode: GET
+
+Retourne en format json l'utilisateur dont l'id est spécifié dans l'url. si l'utilisateur n'existe pas, le résultat est vide.
+
+### Modifier un utilisateur
+
+url : http://vps381611.ovh.net:8080/WTSAPI/users
+
+méthode: PUT
+
+json: par exemple pour modifier le nom d'un utilisateur:
+```json
+{
+  "id":"",
+  "name":""
+}
+```
+
+### Supprimer un utilisateur
+
+url : http://vps381611.ovh.net:8080/WTSAPI/users/{id}
+
+méthode: DELETE
+
+Supprime l'utilisateur dont l'id est spécifié dans l'url.
+
+
+### Récupérer les codes d'un utilisateur
+
+url : http://vps381611.ovh.net:8080/WTSAPI/users/usercodes/{id}
+
+méthode: GET
+
+
+### Récupérer les languages de codes d'un utilisateur
+
+url : http://vps381611.ovh.net:8080/WTSAPI/users/userlanguages/{id}
+
+méthode: GET
+
+
+## Code Service
