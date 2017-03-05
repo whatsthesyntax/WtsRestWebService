@@ -20,6 +20,8 @@ public class Code implements Serializable{
     private String description;
     private List<Tag> tags;
     private Langage langage;
+    private User user;
+    private Boolean visible;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +54,16 @@ public class Code implements Serializable{
         this.description = description;
     }
 
+    @Basic
+    @Column(name="visible")
+    public Boolean getVisible(){
+        return this.visible;
+    }
+    public void setVisible(Boolean v){
+        this.visible = v;
+    }
+
+
     @ManyToMany
     @JoinTable(name = "codeTags",
             joinColumns = { @JoinColumn(name = "codeId", referencedColumnName = "codeId") },
@@ -73,5 +85,11 @@ public class Code implements Serializable{
     public void setLangage(Langage l){
         this.langage = l;
     }
+
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName="userId")
+    public User getUser() { return user;}
+    public void setUser(User u) {this.user = u;}
+
 
 }

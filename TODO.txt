@@ -1,0 +1,16 @@
+## DATABASE
+
+
+- relation user / code
+- champs private / public pour les codes perso
+- contribution : accord des admins
+- recherche : parse search object to tags and language
+- mettre les urls dans le readme
+- documentation api
+- fonction connexion qui retourne infos (ou juste id) de l'utilisateur
+
+
+## SERVICE
+
+OK - create roles 
+- tâches administrateur : créer des codes

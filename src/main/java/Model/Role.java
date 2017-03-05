@@ -1,6 +1,7 @@
 package Model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -38,10 +39,8 @@ public class Role {
         this.role = role;
     }
 
-    @ManyToMany
-    @JoinTable(name = "userRoles",
-            joinColumns = { @JoinColumn(name = "roleId") },
-            inverseJoinColumns = { @JoinColumn(name = "userId") })
+    @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     public List<User> getUsers()
     {
         return users;

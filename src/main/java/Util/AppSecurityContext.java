@@ -28,6 +28,10 @@ public class AppSecurityContext implements SecurityContext{
     }
 
 
+    public User getCurrentUser(){
+        return this.user;
+    }
+
     public boolean isSecure() {return "https".equals(this.scheme);}
 
 

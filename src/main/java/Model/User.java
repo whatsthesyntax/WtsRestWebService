@@ -63,8 +63,10 @@ public class User implements Serializable, Principal {
         this.password = password;
     }
 
-    @ManyToMany(mappedBy = "users")
-    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "userRoles",
+            joinColumns = { @JoinColumn(name = "userId") },
+            inverseJoinColumns = { @JoinColumn(name = "roleId") })
     public List<Role> getRoles()
     {
         return roles;

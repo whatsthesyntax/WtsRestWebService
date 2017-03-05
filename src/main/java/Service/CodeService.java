@@ -3,6 +3,7 @@ package Service;
 import Dao.CodeDao;
 import Dao.LangageDao;
 import Dao.TagDao;
+import Dao.UserDao;
 import Model.Code;
 import Model.Langage;
 import Model.Tag;
@@ -35,11 +36,13 @@ public class CodeService {
     CodeDao dao;
     LangageDao ldao;
     TagDao tdao;
+    UserDao udao;
 
     public CodeService(){
         this.dao = new CodeDao();
         this.ldao = new LangageDao();
         this.tdao = new TagDao();
+        this.udao = new UserDao();
     }
 
     @GET
@@ -103,6 +106,18 @@ public class CodeService {
         return null;
     }
 
+    @GET
+    @Path("/user/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Code> getCodeByUser(@PathParam("id") int id){
+        try {
+            return dao.getByUser(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -134,7 +149,11 @@ public class CodeService {
                 }
                 tags.add(t);
             }
-            dao.add(c,l,tags);
+
+            //set user
+            int id = gson.fromJson(jsonObject.getJSONObject("user").getString("id"), Integer.class);
+            User u = udao.get(id);
+            dao.add(c,l,tags,u);
         }catch (Exception e) {
             e.printStackTrace();
         }

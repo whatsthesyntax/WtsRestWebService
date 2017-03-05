@@ -3,6 +3,7 @@ package Dao;
 import Model.Code;
 import Model.Langage;
 import Model.Tag;
+import Model.User;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.EntityManager;
@@ -74,10 +75,24 @@ public class CodeDao {
         }
     }
 
-    public void add(Code c, Langage l, List<Tag> tags)throws Exception{
+    public List<Code> getByUser(int id) throws Exception{
+        try{
+            List<Code> codes;
+            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join c.user u where u.userId= ?1 " +
+                    "order by c.codeId")
+                    .setParameter(1, id).getResultList();
+            return codes;
+        }catch(Exception e){
+            throw e;
+        }
+    }
+
+    public void add(Code c, Langage l, List<Tag> tags, User u)throws Exception{
         try{
             c.setLangage(l);
             c.setTags(tags);
+            if(u != null)
+                c.setUser(u);
             em.getTransaction().begin();
             em.persist(c);
             em.getTransaction().commit();

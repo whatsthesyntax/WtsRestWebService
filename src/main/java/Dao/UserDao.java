@@ -1,5 +1,7 @@
 package Dao;
 
+import Model.Code;
+import Model.Langage;
 import Model.User;
 
 import javax.persistence.EntityManager;
@@ -114,6 +116,33 @@ public class UserDao {
             throw e;
         }
 
+    }
+
+    public List<Code> getCodes(int id)throws Exception{
+        try{
+            List<Code> codes;
+            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join c.user u where u.userId= ?1 " +
+                    "order by c.codeId")
+                    .setParameter(1, id).getResultList();
+            return codes;
+        }catch(Exception e){
+            throw e;
+        }
+    }
+
+    public List<Langage> getLangages(int id)throws Exception{
+        try{
+            List<Langage> langages = new ArrayList<Langage>();
+            List<Code> codes = getCodes(id);
+            for(Code c : codes){
+                if(!langages.contains(c.getLangage())){
+                    langages.add(c.getLangage());
+                }
+            }
+            return langages;
+        }catch(Exception e){
+            throw e;
+        }
     }
 
 }

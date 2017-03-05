@@ -5,6 +5,9 @@ package Service;
  */
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.Code;
+import Model.Langage;
 import Model.User;
 import Dao.UserDao;
 
@@ -56,7 +59,32 @@ public class UserService {
         return null;
     }
 
+    @GET
+    @Path("/usercodes/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Code> getUserCodes(@PathParam("id") int id){
+        try{
+            return dao.getCodes(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @GET
+    @Path("/userlanguages/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Langage> getUserLanguages(@PathParam("id") int id){
+        try{
+            return dao.getLangages(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void addUser(User user)
     {
