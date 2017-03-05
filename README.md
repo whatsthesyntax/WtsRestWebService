@@ -96,3 +96,50 @@ méthode: GET
 
 
 ## Code Service
+
+### Créer un code
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes
+
+méthode: POST
+
+json:
+```json
+  {
+    "code": "texte du code",
+    "description": "optionnelle",
+    "tags": [
+      {
+        "tag": "fonction / déclarations / conditions etc"
+      },
+      {
+        "tag": ""
+      }
+    ],
+    "langage": ""
+  }
+
+}
+```
+
+### Créer un code appartenant à un utilisateur
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes
+
+méthode: POST
+
+json:
+```json
+  {
+    "code": "",
+    "description": "",
+    "tags": [
+      {
+        "tag": ""
+      }
+    ],
+    "langage": "",
+    "user": "id de l'utilisateur",
+    "visible": "true ou false"
+  }
+```
