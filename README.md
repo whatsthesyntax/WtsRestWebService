@@ -88,7 +88,7 @@ url : http://vps381611.ovh.net:8080/WTSAPI/users/usercodes/{id}
 méthode: GET
 
 
-### Récupérer les languages de codes d'un utilisateur
+### Récupérer les langages des codes d'un utilisateur
 
 url : http://vps381611.ovh.net:8080/WTSAPI/users/userlanguages/{id}
 
@@ -103,34 +103,60 @@ url: http://vps381611.ovh.net:8080/WTSAPI/codes
 
 méthode: POST
 
-json:
+json: 
 ```json
-  {
-    "code": "texte du code",
-    "description": "optionnelle",
-    "tags": [
-      {
-        "tag": "fonction / déclarations / conditions etc"
-      },
-      {
-        "tag": ""
-      }
-    ],
-    "langage": ""
-  }
-
+{
+   "code":{
+    	"code": "texte du code",
+    	"description": "optionnelle"
+   },
+   "tags": [
+     {
+       "tag": ""
+     }
+   ],
+   "langage":{
+       "langage":""
+   }
 }
 ```
 
-### Créer un code appartenant à un utilisateur
+### Créer un code appartenant à un utilisateur (code personnel)
 
 url: http://vps381611.ovh.net:8080/WTSAPI/codes
 
 méthode: POST
 
+json: il faut rensigner l'id de l'utilisateur connecté, ainsi qu'un boolean "visible" pour indiquer si le code est publique ou privé.
+```json
+{
+    "code":{
+    	"code": "",
+    	"description": ""
+    },
+    "tags": [
+      {
+        "tag": ""
+      }
+    ],
+    "langage":{
+        "langage":""
+    },
+    "userid": "",
+    "visible": true
+}
+```
+
+### Modifier un code perso
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes
+
+méthode: PUT
+
 json:
 ```json
-  {
+{
+    "codeId": 1,
     "code": "",
     "description": "",
     "tags": [
@@ -138,8 +164,157 @@ json:
         "tag": ""
       }
     ],
-    "langage": "",
-    "user": "id de l'utilisateur",
-    "visible": "true ou false"
+    "langage": {
+      "langage": ""
+    },
+    "user": {
+      "userId": 134
+    },
+    "visible": true
   }
 ```
+
+
+
+## Récupérer les codes d'un utilisateur
+
+Cette fonction est différente de la première car seul l'administrateur y aura accès pour avoir une vue sur tous les codes, les filtrer par utilisateur et contrôler des codes qui ne sont pas encore publiques par exemple.
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes/user/{id}
+
+méthode: GET
+
+json: le résultat est une liste de codes appartenant à l'itilisateur dont l'id est passé en paramètre
+```json
+[
+  {
+    "codeId": 1,
+    "code": "",
+    "description": "",
+    "tags": [
+      {
+        "tagId": 1,
+        "tag": ""
+      }
+    ],
+    "langage": {
+      "langageId": 1,
+      "langage": ""
+    },
+    "user": {
+      "userId": 134,
+      "email": "",
+      "password": "",
+      "roles": [
+        {
+          "roleId": 1,
+          "role": "User"
+        }
+      ],
+      "name": ""
+    },
+    "visible": false
+  },
+  {
+    "codeId": 2,
+    "code": "",
+    "description": "",
+    "tags": [
+      1
+    ],
+    "langage": 1,
+    "user": 134,
+    "visible": true
+  }
+]
+
+```
+
+
+## Langages
+
+### Récupérer tous les langages
+
+url: http://vps381611.ovh.net:8080/WTSAPI/langages
+
+méthode: Get
+
+json: Retourne une liste de langages
+```json
+[
+  {
+    "langageId": 1,
+    "langage": "java"
+  },
+  {
+    "langageId": 2,
+    "langage": "php"
+  },
+  {
+    "langageId": 3,
+    "langage": "c"
+  }
+]
+
+```
+
+
+### Créer un langage
+
+url: http://vps381611.ovh.net:8080/WTSAPI/langages
+
+méthode: POST
+
+json:
+```json
+{
+    "langage":""
+}
+
+```
+
+## Tags
+
+### Récupérer tous les tags
+
+url: http://vps381611.ovh.net:8080/WTSAPI/Tags
+
+méthode: GET
+
+json: Retourne une liste de tags
+```json
+[
+  {
+    "tagId": 1,
+    "tag": "boucle"
+  },
+  {
+    "tagId": 2,
+    "tag": "fonction"
+  },
+  {
+    "tagId": 3,
+    "tag": "condition"
+  }
+]
+```
+
+### Créer un tag
+
+url: http://vps381611.ovh.net:8080/WTSAPI/Tags
+
+méthode: POST
+
+json:
+```json
+{
+  "tag":""
+}
+```
+
+
+
+
+
+
+
