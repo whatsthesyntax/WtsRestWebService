@@ -3,6 +3,7 @@ package Dao;
 import Model.Langage;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  * Created by rim on 03/02/17.
@@ -19,6 +20,17 @@ public class LangageDao {
             this.em = this.emf.getEntityManager();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public List<Langage> getAll() throws Exception{
+        try{
+            List<Langage> langages;
+            langages = em.createQuery("SELECT l FROM Langage l", Langage.class).getResultList();
+            return langages;
+        }catch(Exception e)
+        {
+            throw e;
         }
     }
 

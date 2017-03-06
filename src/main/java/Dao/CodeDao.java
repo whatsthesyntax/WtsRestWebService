@@ -87,10 +87,11 @@ public class CodeDao {
         }
     }
 
-    public void add(Code c, Langage l, List<Tag> tags, User u)throws Exception{
+    public void add(Code c, Langage l, List<Tag> tags, User u, boolean v)throws Exception{
         try{
             c.setLangage(l);
             c.setTags(tags);
+            c.setVisible(v);
             if(u != null)
                 c.setUser(u);
             em.getTransaction().begin();

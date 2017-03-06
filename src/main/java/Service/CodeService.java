@@ -29,7 +29,6 @@ import org.json.*;
  */
 
 @Path("/codes")
-// change permissions afterwards
 @PermitAll
 public class CodeService {
 
@@ -151,9 +150,18 @@ public class CodeService {
             }
 
             //set user
-            int id = gson.fromJson(jsonObject.getJSONObject("user").getString("id"), Integer.class);
-            User u = udao.get(id);
-            dao.add(c,l,tags,u);
+            if(jsonObject.has("userid")){
+                int id = Integer.parseInt(jsonObject.getString("userid"));
+                User u = udao.get(id);
+                boolean v = true;
+                if(jsonObject.has("visible")){
+                    v = jsonObject.getBoolean("visible");
+                }
+                dao.add(c,l,tags,u,v);
+            }else{
+                dao.add(c,l,tags,null, true);
+            }
+
         }catch (Exception e) {
             e.printStackTrace();
         }
