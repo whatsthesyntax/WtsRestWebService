@@ -75,6 +75,23 @@ public class CodeDao {
         }
     }
 
+    public List<Code> getByTagsAndLanguage(List<String> tags, String l) throws Exception{
+        try{
+
+            List<Code> result = new ArrayList<>();
+            List<Code> tCodes = getByTags(tags);
+            List<Code> lCodes = getByLanguage(l);
+            for(Code tc : tCodes){
+                if(lCodes.contains(tc)){
+                    result.add(tc);
+                }
+            }
+            return result;
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
     public List<Code> getByUser(int id) throws Exception{
         try{
             List<Code> codes;
@@ -92,8 +109,11 @@ public class CodeDao {
             c.setLangage(l);
             c.setTags(tags);
             c.setVisible(v);
-            if(u != null)
+            c.setValide(true);
+            if(u != null){
                 c.setUser(u);
+                c.setValide(false);
+            }
             em.getTransaction().begin();
             em.persist(c);
             em.getTransaction().commit();

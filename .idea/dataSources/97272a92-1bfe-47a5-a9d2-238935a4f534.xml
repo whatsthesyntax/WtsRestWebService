@@ -73,193 +73,197 @@
       <Position>6</Position>
       <DataType>tinyint(1)|0</DataType>
     </column>
-    <index id="26" parent="7" name="codes_codeID_uindex">
+    <column id="26" parent="7" name="valide">
+      <Position>7</Position>
+      <DataType>tinyint(1)|0</DataType>
+    </column>
+    <index id="27" parent="7" name="codes_codeID_uindex">
       <ColNames>codeID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="27" parent="7" name="codes_langages_fk">
+    <index id="28" parent="7" name="codes_langages_fk">
       <ColNames>langageId</ColNames>
     </index>
-    <index id="28" parent="7" name="codes_users_fk">
+    <index id="29" parent="7" name="codes_users_fk">
       <ColNames>userId</ColNames>
     </index>
-    <key id="29" parent="7" name="PRIMARY">
+    <key id="30" parent="7" name="PRIMARY">
       <ColNames>codeID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="30" parent="7" name="codes_codeID_uindex">
+    <key id="31" parent="7" name="codes_codeID_uindex">
       <ColNames>codeID</ColNames>
       <UnderlyingIndexName>codes_codeID_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="31" parent="7" name="codes_langages_fk">
+    <foreign-key id="32" parent="7" name="codes_langages_fk">
       <ColNames>langageId</ColNames>
       <RefSchemaName>mydb</RefSchemaName>
       <RefTableName>langages</RefTableName>
       <RefColNames>langageId</RefColNames>
     </foreign-key>
-    <foreign-key id="32" parent="7" name="codes_users_fk">
+    <foreign-key id="33" parent="7" name="codes_users_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>mydb</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <column id="33" parent="8" name="langageId">
+    <column id="34" parent="8" name="langageId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="34" parent="8" name="langage">
+    <column id="35" parent="8" name="langage">
       <Position>2</Position>
       <DataType>varchar(25)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="35" parent="8" name="langages_langageId_index">
+    <index id="36" parent="8" name="langages_langageId_index">
       <ColNames>langageId</ColNames>
     </index>
-    <key id="36" parent="8" name="PRIMARY">
+    <key id="37" parent="8" name="PRIMARY">
       <ColNames>langageId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="37" parent="9" name="roleId">
+    <column id="38" parent="9" name="roleId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="38" parent="9" name="role">
+    <column id="39" parent="9" name="role">
       <Position>2</Position>
       <DataType>varchar(25)|0</DataType>
       <DefaultExpression>&apos;utilisateur&apos;</DefaultExpression>
     </column>
-    <key id="39" parent="9" name="PRIMARY">
+    <key id="40" parent="9" name="PRIMARY">
       <ColNames>roleId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="40" parent="10" name="tagId">
+    <column id="41" parent="10" name="tagId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="41" parent="10" name="tag">
+    <column id="42" parent="10" name="tag">
       <Position>2</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="42" parent="10" name="tags_tagId_uindex">
+    <index id="43" parent="10" name="tags_tagId_uindex">
       <ColNames>tagId</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="43" parent="10" name="PRIMARY">
+    <key id="44" parent="10" name="PRIMARY">
       <ColNames>tagId</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="44" parent="10" name="tags_tagId_uindex">
+    <key id="45" parent="10" name="tags_tagId_uindex">
       <ColNames>tagId</ColNames>
       <UnderlyingIndexName>tags_tagId_uindex</UnderlyingIndexName>
     </key>
-    <column id="45" parent="11" name="userId">
+    <column id="46" parent="11" name="userId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="46" parent="11" name="codeId">
+    <column id="47" parent="11" name="codeId">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="47" parent="11" name="userCodes_codeId_uindex">
+    <index id="48" parent="11" name="userCodes_codeId_uindex">
       <ColNames>codeId</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="48" parent="11" name="userCodes_userId_uindex">
+    <index id="49" parent="11" name="userCodes_userId_uindex">
       <ColNames>userId</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="49" parent="11" name="PRIMARY">
+    <key id="50" parent="11" name="PRIMARY">
       <ColNames>userId</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="50" parent="11" name="userCodes_userId_uindex">
+    <key id="51" parent="11" name="userCodes_userId_uindex">
       <ColNames>userId</ColNames>
       <UnderlyingIndexName>userCodes_userId_uindex</UnderlyingIndexName>
     </key>
-    <key id="51" parent="11" name="userCodes_codeId_uindex">
+    <key id="52" parent="11" name="userCodes_codeId_uindex">
       <ColNames>codeId</ColNames>
       <UnderlyingIndexName>userCodes_codeId_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="52" parent="11" name="user_fk">
+    <foreign-key id="53" parent="11" name="user_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>mydb</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <foreign-key id="53" parent="11" name="codes_fk">
+    <foreign-key id="54" parent="11" name="codes_fk">
       <ColNames>codeId</ColNames>
       <RefSchemaName>mydb</RefSchemaName>
       <RefTableName>codes</RefTableName>
       <RefColNames>codeID</RefColNames>
     </foreign-key>
-    <column id="54" parent="12" name="userId">
+    <column id="55" parent="12" name="userId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="12" name="roleId">
+    <column id="56" parent="12" name="roleId">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="56" parent="12" name="role">
+    <index id="57" parent="12" name="role">
       <ColNames>roleId</ColNames>
     </index>
-    <key id="57" parent="12" name="PRIMARY">
+    <key id="58" parent="12" name="PRIMARY">
       <ColNames>userId
 roleId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="58" parent="12" name="user">
+    <foreign-key id="59" parent="12" name="user">
       <ColNames>userId</ColNames>
       <RefSchemaName>mydb</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <foreign-key id="59" parent="12" name="role">
+    <foreign-key id="60" parent="12" name="role">
       <ColNames>roleId</ColNames>
       <RefSchemaName>mydb</RefSchemaName>
       <RefTableName>roles</RefTableName>
       <RefColNames>roleId</RefColNames>
     </foreign-key>
-    <column id="60" parent="13" name="userId">
+    <column id="61" parent="13" name="userId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="61" parent="13" name="email">
+    <column id="62" parent="13" name="email">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="62" parent="13" name="password">
+    <column id="63" parent="13" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="13" name="username">
+    <column id="64" parent="13" name="username">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="64" parent="13" name="users_user_id_uindex">
+    <index id="65" parent="13" name="users_user_id_uindex">
       <ColNames>userId</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="65" parent="13" name="PRIMARY">
+    <key id="66" parent="13" name="PRIMARY">
       <ColNames>userId</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="66" parent="13" name="users_user_id_uindex">
+    <key id="67" parent="13" name="users_user_id_uindex">
       <ColNames>userId</ColNames>
       <UnderlyingIndexName>users_user_id_uindex</UnderlyingIndexName>
     </key>

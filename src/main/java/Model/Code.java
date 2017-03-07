@@ -21,7 +21,7 @@ public class Code implements Serializable{
     private List<Tag> tags;
     private Langage langage;
     private User user;
-    private Boolean visible;
+    private Boolean visible, valide;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,6 +53,12 @@ public class Code implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Basic
+    @Column(name="valide")
+    public boolean getValide(){ return this.valide; }
+    public void setValide(boolean v){ this.valide = v; }
+
 
     @Basic
     @Column(name="visible")

@@ -74,6 +74,57 @@ public class CodeService {
         return null;
     }
 
+
+    @POST
+    @Path("/validate/{id}")
+    public boolean validateCode(@PathParam("id") int id){
+        try{
+            Code c = dao.getById(id);
+            if(c!=null){
+                c.setValide(true);
+                dao.update(c);
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @POST
+    @Path("/show/{id}")
+    public boolean showCode(@PathParam("id") int id){
+        try{
+            Code c = dao.getById(id);
+            if(c!=null){
+                c.setVisible(true);
+                dao.update(c);
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @POST
+    @Path("/show/{id}")
+    public boolean hideCode(@PathParam("id") int id){
+        try{
+            Code c = dao.getById(id);
+            if(c!=null){
+                c.setVisible(false);
+                dao.update(c);
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+
     @POST
     @Path("/tags")
     @Consumes(MediaType.APPLICATION_JSON)
