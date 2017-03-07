@@ -106,9 +106,9 @@ méthode: POST
 json: 
 ```json
 {
-   "code":{
-    	"code": "texte du code",
-    	"description": "optionnelle"
+   "code":
+      "code": "texte du code",
+      "description": "optionnelle"
    },
    "tags": [
      {
@@ -131,8 +131,8 @@ json: il faut rensigner l'id de l'utilisateur connecté, ainsi qu'un boolean "vi
 ```json
 {
     "code":{
-    	"code": "",
-    	"description": ""
+      "code": "",
+      "description": ""
     },
     "tags": [
       {
@@ -229,6 +229,50 @@ json: le résultat est une liste de codes appartenant à l'itilisateur dont l'id
 ]
 
 ```
+
+### Recherche par tags et langage
+
+url: http://vps381611.ovh.net:8080/WTSAPI/search
+
+méthode: POST
+
+text/plain: poster un simple texte contenant des mots clés séparés par des espaces. Exemple: "java boucle".
+
+
+
+### Valider un code
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes/validate/{id}
+
+méthode: POST
+
+{id} : identifiant du code.
+Retourne: true si tout se passe bien, false sinon.
+
+
+### Rendre un code publique (visible=true)
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes/show/{id}
+
+méthode: POST
+
+
+{id} : identifiant du code.
+Retourne: true si tout se passe bien, false sinon.
+
+
+
+### Rendre un code privé
+
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes/hide/{id}
+
+méthode: POST
+
+
+{id} : identifiant du code.
+Retourne: true si tout se passe bien, false sinon.
+
 
 
 ## Langages
