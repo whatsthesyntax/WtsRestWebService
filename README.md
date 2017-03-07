@@ -277,7 +277,7 @@ json:
 
 ### Récupérer tous les tags
 
-url: http://vps381611.ovh.net:8080/WTSAPI/Tags
+url: http://vps381611.ovh.net:8080/WTSAPI/tags
 
 méthode: GET
 
@@ -301,7 +301,7 @@ json: Retourne une liste de tags
 
 ### Créer un tag
 
-url: http://vps381611.ovh.net:8080/WTSAPI/Tags
+url: http://vps381611.ovh.net:8080/WTSAPI/tags
 
 méthode: POST
 
