@@ -106,7 +106,7 @@ méthode: POST
 json: 
 ```json
 {
-   "code":
+   "code":{
       "code": "texte du code",
       "description": "optionnelle"
    },
