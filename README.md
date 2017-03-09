@@ -107,8 +107,8 @@ json:
 ```json
 {
    "code":{
-    	"code": "texte du code",
-    	"description": "optionnelle"
+      "code": "texte du code",
+      "description": "optionnelle"
    },
    "tags": [
      {
@@ -131,8 +131,8 @@ json: il faut rensigner l'id de l'utilisateur connecté, ainsi qu'un boolean "vi
 ```json
 {
     "code":{
-    	"code": "",
-    	"description": ""
+      "code": "",
+      "description": ""
     },
     "tags": [
       {
@@ -153,30 +153,41 @@ url: http://vps381611.ovh.net:8080/WTSAPI/codes
 
 méthode: PUT
 
-json:
+json: reprendre le format que retourne un GET http://vps381611.ovh.net:8080/WTSAPI/codes/{id} et modifier le contenu du code
 ```json
 {
-    "codeId": 1,
-    "code": "",
-    "description": "",
-    "tags": [
-      {
-        "tag": ""
-      }
-    ],
-    "langage": {
-      "langage": ""
+  "codeId": 36,
+  "code": "for ($i = 1; $i <= 30; $i++){\n    echo $i;\n}",
+  "description": "",
+  "tags": [
+    {
+      "tagId": 25,
+      "tag": "for"
     },
-    "user": {
-      "userId": 134
-    },
-    "visible": true
-  }
+    {
+      "tagId": 3,
+      "tag": "boucle"
+    }
+  ],
+  "langage": {
+    "langageId": 3,
+    "langage": "php"
+  },
+  "user": {
+    "userId": 999,
+    "email": "",
+    "password": "",
+    "roles": [],
+    "name": ""
+  },
+  "visible": false,
+  "valide": false
+}
 ```
 
 
 
-## Récupérer les codes d'un utilisateur
+### Récupérer les codes d'un utilisateur
 
 Cette fonction est différente de la première car seul l'administrateur y aura accès pour avoir une vue sur tous les codes, les filtrer par utilisateur et contrôler des codes qui ne sont pas encore publiques par exemple.
 
@@ -229,6 +240,50 @@ json: le résultat est une liste de codes appartenant à l'itilisateur dont l'id
 ]
 
 ```
+
+### Recherche par tags et langage
+
+url: http://vps381611.ovh.net:8080/WTSAPI/search
+
+méthode: POST
+
+text/plain: poster un simple texte contenant des mots clés séparés par des espaces. Exemple: "java boucle".
+
+
+
+### Valider un code
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes/validate/{id}
+
+méthode: POST
+
+{id} : identifiant du code.
+Retourne: true si tout se passe bien, false sinon.
+
+
+### Rendre un code publique (visible=true)
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes/show/{id}
+
+méthode: POST
+
+
+{id} : identifiant du code.
+Retourne: true si tout se passe bien, false sinon.
+
+
+
+### Rendre un code privé
+
+
+url: http://vps381611.ovh.net:8080/WTSAPI/codes/hide/{id}
+
+méthode: POST
+
+
+{id} : identifiant du code.
+Retourne: true si tout se passe bien, false sinon.
+
 
 
 ## Langages
