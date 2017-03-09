@@ -78,6 +78,7 @@
       <Position>7</Position>
       <DataType>tinyint(1)|0</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
     <index id="28" parent="8" name="codes_codeID_uindex">
       <ColNames>codeID</ColNames>

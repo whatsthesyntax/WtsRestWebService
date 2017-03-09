@@ -108,7 +108,7 @@ public class CodeService {
     }
 
     @POST
-    @Path("/show/{id}")
+    @Path("/hide/{id}")
     public boolean hideCode(@PathParam("id") int id){
         try{
             Code c = dao.getById(id);
@@ -187,6 +187,7 @@ public class CodeService {
                 l = gson.fromJson(jsonObject.getJSONObject("langage").toString(), Langage.class);
                 ldao.add(l);
             }
+
             //check existings tags
             List<Tag> tags = new ArrayList<>();
             JSONArray jarray = jsonObject.getJSONArray("tags");
@@ -219,11 +220,55 @@ public class CodeService {
     }
 
     @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void updateCode(Code code)
+    public void updateCode(String str)
     {
         try {
-            dao.update(code);
+            Gson gson = new GsonBuilder().create();
+            JSONObject jsonObject = new JSONObject(str);
+            Code c = gson.fromJson(jsonObject.toString(), Code.class);
+
+            //check existing langages
+            String langage = gson.fromJson(jsonObject.getJSONObject("langage").getString("langage"), String.class);
+            Langage l = ldao.getByName(langage);
+            if(l == null) {
+                //create new langage
+                l = gson.fromJson(jsonObject.getJSONObject("langage").toString(), Langage.class);
+                ldao.add(l);
+            }
+
+            //check existings tags
+            List<Tag> tags = new ArrayList<>();
+            JSONArray jarray = jsonObject.getJSONArray("tags");
+            for(int i = 0 ; i < jarray.length(); i++){
+                Tag t = tdao.getByName(jarray.getJSONObject(i).getString("tag"));
+                if(t == null){
+                    t = new Tag();
+                    t.setTag(jarray.getJSONObject(i).getString("tag"));
+                    tdao.add(t);
+                }
+                tags.add(t);
+            }
+
+            //set visible
+            boolean vi = true;
+            if(jsonObject.has("visible")){
+               vi = jsonObject.getBoolean("visible");
+            }
+
+            //set valide
+            boolean va = true;
+            if(jsonObject.has("valide")){
+                va = jsonObject.getBoolean("valide");
+            }
+
+            c.setLangage(l);
+            c.setValide(va);
+            c.setTags(tags);
+            c.setVisible(vi);
+
+            dao.update(c);
         }catch (Exception e) {
             e.printStackTrace();
         }

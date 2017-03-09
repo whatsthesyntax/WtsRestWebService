@@ -66,7 +66,7 @@ public class CodeDao {
     public List<Code> getByLanguage(String l) throws Exception {
         try {
             List<Code> codes;
-            codes = (List<Code>) em.createQuery("SELECT c FROM Code c join Langage l where l.langage =?1 " +
+            codes = (List<Code>) em.createQuery("SELECT c FROM Code c where c.langage.langage =?1 " +
                     "order by c.codeId")
                     .setParameter(1, l).getResultList();
             return codes;

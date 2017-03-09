@@ -3102,6 +3102,7 @@
       <Position>7</Position>
       <DataType>tinyint(1)|0</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
     <index id="695" parent="69" name="codes_codeID_uindex">
       <ColNames>codeID</ColNames>
